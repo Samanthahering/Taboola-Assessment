@@ -82,7 +82,7 @@
     </body>
 
     <script>
-      var url = 'https://api.taboola.com/2.0/json/apitestaccount/recommendations.get'
+      const url = 'https://api.taboola.com/2.0/json/apitestaccount/recommendations.get'
       //fetch returns a promise
       fetch(url, {
         method: 'POST',
@@ -107,12 +107,12 @@
         })
         console.log('newArray', listArrayOfObjects)
     
-        var cluster0 = document.getElementById('cluster0')
-        var cluster1 = document.getElementById('cluster1')
-        var cluster2 = document.getElementById('cluster2')
-        var cluster3 = document.getElementById('cluster3')
-        var cluster4 = document.getElementById('cluster4')
-        var cluster5 = document.getElementById('cluster5')
+        const cluster0 = document.getElementById('cluster0')
+        const cluster1 = document.getElementById('cluster1')
+        const cluster2 = document.getElementById('cluster2')
+        const cluster3 = document.getElementById('cluster3')
+        const cluster4 = document.getElementById('cluster4')
+        const cluster5 = document.getElementById('cluster5')
         
 
         cluster0.innerHTML = `<div id='information0'>
