@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+   <title>Samantha Hering Assessment</title>
+    <head>
+    </head>
+    <style>
+      body{
+        background-color: lightgray;
+      }
+      #row{
+        display: flex;
+        overflow-x: hidden;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5%;
+        margin-right: 5%
+      }
+      img{
+        width: 60%;
+      }
+      h4{
+        margin: 0;
+        width: 60%;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical; 
+      }
+      #information0{
+        overflow: hidden; 
+      }
+     
+      a{
+        text-decoration: none;
+        color: black;
+      }
+      h6{
+        margin-top: 0;
+
+      }
+      p{
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      @media only screen and (max-width: 600px){
+        #row{
+          flex-direction: column;
+        }
+      }
+    </style>
+    <body>
+      <h1>Find Out The Latest...</h1>
+      <div id='results'>
+
+        <div id='row'>
+          <div id='cluster0'>
+          </div>
+         
+          
+            <div id='cluster1'>
+            </div>
+          
+          
+          <div id='cluster2'>
+          </div>
+
+        </div>
+
+        <div id='row'>
+          <div id='cluster3'>
+          </div>
+        
+          <div id='cluster4'>
+          </div>
+        
+          <div id='cluster5'>
+          </div>
+
+        </div>
+
+      </div>
+      
+    </body>
+
+    <script>
+      var url = 'https://api.taboola.com/2.0/json/apitestaccount/recommendations.get'
+      //fetch returns a promise
+      fetch(url, {
+        method: 'POST',
+        // headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({"placements":[{"name":"Below Article Thumbnails","recCount":6,"organicType":"mix","thumbnail":{"width":640,"height":480}}],"user":{"session":"init","realip":"24.126.139.0","agent":"Mozilla%2F5.0+(Windows+NT+10.0%3B+Win64%3B+x64%3B+ServiceUI+13)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F64.0.3282.140+Safari%2F537.36+Edge%2F17.17134","device":"14A7B4BB0B5B63781A90BE1B0F5B6019"},"app":{"type":"WEB","apiKey":"7be65fc78e52c11727793f68b06d782cff9ede3c","name":"take-home-challenge","origin":"CLIENT"},"view":{"id":"a558e7763d614902a3689c69b23c25a7"},"source":{"type":"TEXT","id":"resources/articles","url":"https://blog.taboola.com/digiday-publishing-summit"}})
+      })
+      //.then handle the promise
+      .then(function(response){
+        //convert to json...this will return another promise
+        return response.json()
+      })
+      //handle the promise
+      .then(function(data){
+        //retrieve the data
+        console.log(data)
+        const listArrayOfObjects = []
+        //create an array of list objects
+        data.placements.map((obj) => {
+          obj.list.map((listObj) => {
+            listArrayOfObjects.push(listObj)
+          })
+        })
+        console.log('newArray', listArrayOfObjects)
+    
+        var cluster0 = document.getElementById('cluster0')
+        var cluster1 = document.getElementById('cluster1')
+        var cluster2 = document.getElementById('cluster2')
+        var cluster3 = document.getElementById('cluster3')
+        var cluster4 = document.getElementById('cluster4')
+        var cluster5 = document.getElementById('cluster5')
+        
+
+        cluster0.innerHTML = `<div id='information0'>
+                              <a href=${listArrayOfObjects[0].url}><img src=${listArrayOfObjects[0].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[0].url}><h4>${listArrayOfObjects[0].name}</h4></a>
+                              <a href=${listArrayOfObjects[0].url}><p>${listArrayOfObjects[0].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[0].categories) === 'object' ? listArrayOfObjects[0].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`
+
+        cluster1.innerHTML = `<div id='information'>
+                              <a href=${listArrayOfObjects[1].url}><img src=${listArrayOfObjects[1].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[1].url}><h4>${listArrayOfObjects[1].name}</h4></a>
+                              <a href=${listArrayOfObjects[1].url}><p>${listArrayOfObjects[1].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[1].categories) === 'object' ? listArrayOfObjects[1].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`
+
+        cluster2.innerHTML = `<div id='information'>
+                              <a href=${listArrayOfObjects[2].url}><img src=${listArrayOfObjects[2].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[2].url}><h4>${listArrayOfObjects[2].name}</h4></a>
+                              <a href=${listArrayOfObjects[2].url}><p>${listArrayOfObjects[2].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[2].categories) === 'object' ? listArrayOfObjects[2].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`
+
+        cluster3.innerHTML = `<div id='information'>
+                              <a href=${listArrayOfObjects[3].url}><img src=${listArrayOfObjects[3].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[3].url}><h4>${listArrayOfObjects[3].name}</h4></a>
+                              <a href=${listArrayOfObjects[3].url}><p>${listArrayOfObjects[3].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[3].categories) === 'object' ? listArrayOfObjects[3].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`
+
+        cluster4.innerHTML = `<div id='information'>
+                              <a href=${listArrayOfObjects[4].url}><img src=${listArrayOfObjects[4].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[4].url}><h4>${listArrayOfObjects[4].name}</h4></a>
+                              <a href=${listArrayOfObjects[4].url}><p>${listArrayOfObjects[4].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[4].categories) === 'object' ? listArrayOfObjects[4].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`
+
+        cluster5.innerHTML = `<div id='information'>
+                              <a href=${listArrayOfObjects[5].url}><img src=${listArrayOfObjects[5].thumbnail[0].url} alt='Image Not Found'/></a>
+                              <a href=${listArrayOfObjects[5].url}><h4>${listArrayOfObjects[5].name}</h4></a>
+                              <a href=${listArrayOfObjects[5].url}><p>${listArrayOfObjects[5].branding}</p></a>
+                              <h6>${typeof(listArrayOfObjects[5].categories) === 'object' ? listArrayOfObjects[5].categories[0].toUpperCase() : console.log('No category')}</h6>
+                              </div>`  
+
+      })
+
+     
+      </script>
+      </html>
